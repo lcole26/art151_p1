@@ -7,6 +7,9 @@ function setup() {
   scanlines_array.push(l2);
 
   let l_test = scanlines_array[0];
+  console.log(l_test.r);
+
+  // if(l_test)
 }
 
 // function draw() {}
