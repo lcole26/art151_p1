@@ -17,18 +17,25 @@ class ScanLine {
     return sqrt(sq(this.end_x - this.start_x) + sq(this.end_y - this.start_y));
   }
 
-  display() {
-    // stroke(this.r, this.g, this.b, this.a);
-    stroke(this.r, this.g, this.b, this.a);
+  getLinePoints() {
+    return [this.start_x, this.start_y, this.end_x, this.end_y];
+  }
 
-    // stroke(color(this.r, this.g, this.b, this.a));
+  display() {
+    stroke(this.r, this.g, this.b, this.a);
     strokeWeight(this.stroke_weight);
     line(this.start_x, this.start_y, this.end_x, this.end_y);
     this.is_displayed = true;
   }
 
   undisplay() {
-    this.is_displayed = false;
+    if (this.is_displayed) {
+      // let tempColor = color([this.r, this.g, this.b], 0);
+      stroke(bg_color);
+      strokeWeight(this.stroke_weight);
+      line(this.start_x, this.start_y, this.end_x, this.end_y);
+      this.is_displayed = false;
+    }
   }
 
   /* if we're doing simple one-color lines, we can cheat and just get the color 
@@ -45,7 +52,7 @@ class ScanLine {
   }
 
   getLineColor() {
-    return color(this.r, this.g, this.b, this.a);
+    return color([this.r, this.g, this.b], this.a);
   }
 
   update() {}
