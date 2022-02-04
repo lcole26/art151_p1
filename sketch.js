@@ -17,7 +17,7 @@ let mic;
 let fft;
 let spectrum;
 
-let numScanlines = 64;
+// let numScanlines = 64;
 let scanlines = [];
 let timings = [];
 let previousColor = null;
@@ -81,4 +81,18 @@ function draw() {
   //   newColor = color([index, index + 1, index + 2], index + 3);
   //   // let s = new ScanLine()
   // }
+
+  for (
+    let index = 0;
+    index < windowHeight;
+    index += windowWidth / numScanlines
+  ) {
+    // const element = array[index];
+    strokeWeight(1);
+    stroke(0, windowWidth / index, index);
+    line(0, index, windowWidth, index / 3);
+    line(0, index, windowWidth, index / 0.1);
+    // line(0, index, windowWidth, index / 2);
+    // line(0, index, windowWidth, index / .3);
+  }
 }

@@ -14,6 +14,7 @@ function setup() {
   let c = l_test_0.getLineColor();
   console.log(c);
   console.log(l.getLineLength());
+  // let v1 = createVector(2, 15, 0);
 }
 
 function draw() {

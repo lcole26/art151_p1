@@ -6,19 +6,36 @@ class ScanLine {
     this.end_y = end_y;
     this.is_displayed = false;
     this.stroke_weight = stroke_weight;
-    // this.stroke_color = color(r, g, b, a);
     this.r = r;
     this.g = g;
     this.b = b;
     this.a = a;
+    // this.stroke_color = color(r, g, b, a);
   }
 
   getLineLength() {
     return sqrt(sq(this.end_x - this.start_x) + sq(this.end_y - this.start_y));
   }
 
-  getLinePoints() {
+  getLineEndpoints() {
     return [this.start_x, this.start_y, this.end_x, this.end_y];
+  }
+
+  initScanlineArray(scanlines) {
+    for (index = 0; index < num_scanlines; i++) {
+      scanlines[i] = new ScanLine(0, 0, 0, 0, 0, 0, 0, 0, 0);
+    }
+  }
+
+  // getPreviousScanline
+
+  /**
+   * wow, i had to look up this shit from way back in middle school, sheeeeeesh
+   * m : slope
+   */
+  FindLineEquation() {
+    let m = (this.end_y - this.start_y) / (this.end_x - this.start_x);
+    let b = this.start_y - m * this.start_x;
   }
 
   display() {
@@ -27,6 +44,8 @@ class ScanLine {
     line(this.start_x, this.start_y, this.end_x, this.end_y);
     this.is_displayed = true;
   }
+
+  FadeInLine() {}
 
   undisplay() {
     if (this.is_displayed) {
