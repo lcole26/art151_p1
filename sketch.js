@@ -16,9 +16,6 @@
 let mic;
 let fft;
 let spectrum;
-
-// let numScanlines = 64;
-let scanlines = [];
 let timings = [];
 let previousColor = null;
 let newColor = null;

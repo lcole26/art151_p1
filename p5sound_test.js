@@ -19,7 +19,7 @@ let lerpedColor;
 let current_draw_time = 0;
 let next_draw_time = 0;
 
-function InitScanlineArray(scanlines) {}
+// function InitScanlineArray(scanlines) {}
 
 function setup() {
   colorMode(HSL);
@@ -32,7 +32,7 @@ function setup() {
   octaveBands = fft_test.getOctaveBands(num_scanlines);
   console.log(`octaveBands is ${octaveBands}`);
 
-  InitScanlineArray(scanlines);
+  // InitScanlineArray(scanlines);
 }
 
 function draw() {

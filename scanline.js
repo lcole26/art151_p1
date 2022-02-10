@@ -21,11 +21,11 @@ class ScanLine {
     return [this.start_x, this.start_y, this.end_x, this.end_y];
   }
 
-  initScanlineArray(scanlines) {
-    for (index = 0; index < num_scanlines; i++) {
-      scanlines[i] = new ScanLine(0, 0, 0, 0, 0, 0, 0, 0, 0);
-    }
-  }
+  // initScanlineArray(scanlines) {
+  //   for (index = 0; index < num_scanlines; i++) {
+  //     scanlines[i] = new ScanLine(0, 0, 0, 0, 0, 0, 0, 0, 0);
+  //   }
+  // }
 
   // getPreviousScanline
 
@@ -45,7 +45,31 @@ class ScanLine {
     this.is_displayed = true;
   }
 
-  FadeInLine() {}
+  FadeInScanline(fade_amount) {
+    if (this.is_displayed) {
+      let current_alpha = this.a;
+      while (current_alpha < fade_amount) {
+        stroke(this.r, this.g, this.b, current_alpha);
+        strokeWeight(this.stroke_weight);
+        line(this.start_x, this.start_y, this.end_x, this.end_y);
+        // this.is_displayed = true;
+      }
+    }
+  }
+
+  FadeOutScanline(fade_amount) {
+    if (this.is_displayed) {
+      let current_alpha = this.a;
+      while (current_alpha > fade_amount) {
+        stroke(this.r, this.g, this.b, current_alpha);
+        strokeWeight(this.stroke_weight);
+        line(this.start_x, this.start_y, this.end_x, this.end_y);
+        // this.is_displayed = true;
+      }
+    }
+
+    // this.is_displayed = false;
+  }
 
   undisplay() {
     if (this.is_displayed) {
@@ -74,5 +98,66 @@ class ScanLine {
     return color([this.r, this.g, this.b], this.a);
   }
 
-  update() {}
+  updateScanlineColor(stroke_weight, r, g, b, a) {
+    this.stroke_weight = stroke_weight;
+    this.r = r;
+    this.g = g;
+    this.b = b;
+    this.a = a;
+    // this.stroke_color = color(r, g, b, a);
+  }
+  updateScanlinePosition(start_x, start_y, end_x, end_y) {
+    this.start_x = start_x;
+    this.start_y = start_y;
+    this.end_x = end_x;
+    this.end_y = end_y;
+    this.stroke_weight = stroke_weight;
+    this.r = r;
+    this.g = g;
+    this.b = b;
+    this.a = a;
+    // this.stroke_color = color(r, g, b, a);
+  }
+  updateScanlineFull(
+    start_x,
+    start_y,
+    end_x,
+    end_y,
+    stroke_weight,
+    r,
+    g,
+    b,
+    a
+  ) {
+    this.start_x = start_x;
+    this.start_y = start_y;
+    this.end_x = end_x;
+    this.end_y = end_y;
+    this.stroke_weight = stroke_weight;
+    this.r = r;
+    this.g = g;
+    this.b = b;
+    this.a = a;
+    // this.stroke_color = color(r, g, b, a);
+  }
+}
+
+// -----------------------------------------------------------------------------------------
+// scanline utilities
+
+function initScanlineArray() {
+  if (typeof scanlines === "undefined" || scanlines === null) {
+    scanlines = [];
+  }
+  // for (index = 0; index < num_scanlines; index++) {
+  //   scanlines.push(new ScanLine(0, 0, 0, 0, 0, 0, 0, 0, 0));
+  // }
+  scanlines.fill(new ScanLine(0, 0, 0, 0, 0, 0, 0, 0, 0), 0, num_scanlines);
+}
+
+function validateScanlines() {
+  if (typeof scanlines === "undefined" || scanlines === null) {
+    return false;
+  }
+  return true;
 }
