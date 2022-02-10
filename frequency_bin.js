@@ -57,24 +57,44 @@ class frequency_bin {
    */
   divideBinBufferIntoScanlineColorArray() {
     let color_array = [];
+    let color_array_2 = [];
+    let bin_buffer_slice = this.bin_buffer.slice(
+      this.bin_buffer.length - frequency_bin_buffer_slice_length,
+      this.bin_buffer.length
+    );
     for (
       let index = 0;
-      index <
-      this.bin_buffer.slice(
-        this.bin_buffer.length - frequency_bin_buffer_slice_length,
-        this.bin_buffer.length
-      ).length;
+      index < bin_buffer_slice.length;
       index += f_bin_chunk_size
     ) {
-      const element = this.bin_buffer[index];
-      let t = this.bin_buffer
+      let t = bin_buffer_slice
         .slice(index, index + f_bin_chunk_size)
         .reduce((a, b) => a + b);
-      // console.log(`t: ${t}`);
-      color_array.push(map(t, 0, 512, 0, 255));
+
+      color_array_2.push(map(t, 0, 512, 0, 255));
     }
-    console.log(`c:array: ${color_array}`);
-    return color_array;
+    console.log(`c2:array: ${color_array_2}`);
+    return color_array_2;
+
+    // for (
+    //   let index = 0;
+    //   index <
+    //   this.bin_buffer.slice(
+    //     this.bin_buffer.length - frequency_bin_buffer_slice_length,
+    //     this.bin_buffer.length
+    //   ).length;
+    //   index += f_bin_chunk_size
+    // ) {
+    //   const element = this.bin_buffer[index];
+    //   let t = this.bin_buffer
+    //     .slice(index, index + f_bin_chunk_size)
+    //     .reduce((a, b) => a + b);
+    //   // console.log(`t: ${t}`);
+    //   color_array.push(map(t, 0, 512, 0, 255));
+    // }
+    // console.log(`c:array: ${color_array}`);
+    // // color_array[0] = 100;
+    // return color_array;
   }
 } //end of frequency_bin class
 
@@ -91,6 +111,7 @@ if (
 function initFrequencyBinsArrayByScanlineIntervals() {
   initFrequencyBinsArray();
   let frequency_band_interval = (max_frequency_range = num_scanlines);
+  // let frequency_band_interval = max_frequency_range / num_scanlines;
 
   if (validateScanlines()) {
     //first interval-banded frequency bin

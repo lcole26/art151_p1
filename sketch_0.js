@@ -31,10 +31,10 @@ function setup() {
   // initBaseBins();
   // console.log(`validatescanline: ${validateScanlines()}`);
   initFrequencyBinsArrayByScanlineIntervals();
+  background(bg_color, bg_alpha);
 }
 
 function draw() {
-  background(bg_color, bg_alpha);
   // sketch_0_spectrum = sketch_0_fft.analyze();
   sketch_0_fft.analyze();
   // sketch_0_spectrum = sketch_0_fft.analyze(1024, "dB");
@@ -87,6 +87,7 @@ function draw() {
     max_alpha
   );
   fill(c3);
+  // background(bg_color, bg_alpha);
   // rect(0, random(windowWidth / 3), windowWidth / 3, 12);
   // line(
   //   random(0, windowWidth),
