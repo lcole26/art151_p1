@@ -13,7 +13,8 @@ var scanlines = [];
 var max_alpha = 170;
 // frequency binning vars
 var averaging_interval = 3000;
-var frequency_bin_buffer_slice_length = 3;
+var frequency_bin_buffer_slice_length = 12;
+var f_bin_chunk_size = 3;
 var min_frequency_range = 20000;
 var max_frequency_range = 20000;
 // var frequency_bin_buffer_display_length = 10;

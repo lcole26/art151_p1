@@ -50,7 +50,33 @@ class frequency_bin {
     ${this.binname}.bin_buffer::AverageValue: ${this.bin_average}
     `);
   }
-}
+
+  /**
+   *
+   * @param {*} scanline
+   */
+  divideBinBufferIntoScanlineColorArray() {
+    let color_array = [];
+    for (
+      let index = 0;
+      index <
+      this.bin_buffer.slice(
+        this.bin_buffer.length - frequency_bin_buffer_slice_length,
+        this.bin_buffer.length
+      ).length;
+      index += f_bin_chunk_size
+    ) {
+      const element = this.bin_buffer[index];
+      let t = this.bin_buffer
+        .slice(index, index + f_bin_chunk_size)
+        .reduce((a, b) => a + b);
+      // console.log(`t: ${t}`);
+      color_array.push(map(t, 0, 512, 0, 255));
+    }
+    console.log(`c:array: ${color_array}`);
+    return color_array;
+  }
+} //end of frequency_bin class
 
 // -----------------------------------------------------------------------------------------
 // frequency bin utilities
@@ -76,6 +102,7 @@ function initFrequencyBinsArrayByScanlineIntervals() {
       )
     );
 
+    //now the rest from band 2-num_scanlines
     for (
       let freq_index = frequency_band_interval * 2;
       freq_index < frequency_band_interval * num_scanlines;
@@ -111,6 +138,16 @@ function initBaseBins() {
   frequency_bins_array.push(
     new frequency_bin(bin_names[6], 6000, max_frequency_range)
   );
+}
+
+function initBaseBins2(array) {
+  array.push(new frequency_bin(bin_names[0], min_frequency_range, 60));
+  array.push(new frequency_bin(bin_names[1], 60, 250));
+  array.push(new frequency_bin(bin_names[2], 250, 500));
+  array.push(new frequency_bin(bin_names[3], 500, 2000));
+  array.push(new frequency_bin(bin_names[4], 2000, 4000));
+  array.push(new frequency_bin(bin_names[5], 4000, 6000));
+  array.push(new frequency_bin(bin_names[6], 6000, max_frequency_range));
 }
 
 function getFrequencyBinAverageOfAverages() {

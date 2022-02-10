@@ -106,6 +106,7 @@ class ScanLine {
     this.a = a;
     // this.stroke_color = color(r, g, b, a);
   }
+
   updateScanlinePosition(start_x, start_y, end_x, end_y) {
     this.start_x = start_x;
     this.start_y = start_y;
@@ -118,6 +119,7 @@ class ScanLine {
     this.a = a;
     // this.stroke_color = color(r, g, b, a);
   }
+
   updateScanlineFull(
     start_x,
     start_y,
@@ -153,6 +155,13 @@ function initScanlineArray() {
   //   scanlines.push(new ScanLine(0, 0, 0, 0, 0, 0, 0, 0, 0));
   // }
   scanlines.fill(new ScanLine(0, 0, 0, 0, 0, 0, 0, 0, 0), 0, num_scanlines);
+}
+
+function initScanlineArray2(arr) {
+  // for (index = 0; index < num_scanlines; index++) {
+  //   scanlines.push(new ScanLine(0, 0, 0, 0, 0, 0, 0, 0, 0));
+  // }
+  arr.fill(new ScanLine(0, 0, 0, 0, 0, 0, 0, 0, 0), 0, num_scanlines);
 }
 
 function validateScanlines() {
